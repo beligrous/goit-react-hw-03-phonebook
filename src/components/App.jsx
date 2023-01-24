@@ -10,6 +10,19 @@ export class App extends Component {
     filter: '',
   };
 
+  componentDidMount() {
+    const initialContacts = localStorage.getItem('contacts');
+    const initialParsedContacts = JSON.parse(initialContacts);
+    this.setState({ contacts: initialParsedContacts });
+  }
+
+  componentDidUpdate({ contacts }, prevporps) {
+    const newContacts = this.state.contacts;
+    if (newContacts !== contacts) {
+      localStorage.setItem('contacts', JSON.stringify(newContacts));
+    }
+  }
+
   formSubmit = ({ name, number }) => {
     const newContact = {
       name,
