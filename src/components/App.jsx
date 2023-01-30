@@ -16,10 +16,10 @@ export class App extends Component {
     initialParsedContacts && this.setState({ contacts: initialParsedContacts });
   }
 
-  componentDidUpdate({ contacts }, prevporps) {
-    const newContacts = this.state.contacts;
-    if (newContacts !== contacts) {
-      localStorage.setItem('contacts', JSON.stringify(newContacts));
+  componentDidUpdate(prevPorps, prevState) {
+    const { contacts } = this.state;
+    if (prevState.contacts !== contacts) {
+      localStorage.setItem('contacts', JSON.stringify(contacts));
     }
   }
 
